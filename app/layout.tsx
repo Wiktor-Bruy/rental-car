@@ -3,6 +3,8 @@ import { Manrope, Inter } from 'next/font/google';
 import 'modern-normalize';
 import './globals.css';
 
+import Header from '@/components/Header/Header';
+
 const geistMan = Manrope({
   variable: '--font-family',
   subsets: ['latin'],
@@ -25,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistMan.variable} ${geistInter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

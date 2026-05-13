@@ -1,4 +1,51 @@
-.icons {
-  fill: blue;
-  stroke: red;
+.hero {
+  background-image: url(/hero.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-top: 4px;
+  padding-top: 436px;
+  padding-bottom: 60px;
+}
+@media (min-resolution: 2x) {
+  .hero {
+    background-image: url(/hero@2x.jpg);
+  }
+}
+.title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 276px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--button);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--white);
+  transition: background-color 200ms ease-in-out;
+}
+.link:hover,
+.link:focus {
+  background-color: var(--button-hover);
 }

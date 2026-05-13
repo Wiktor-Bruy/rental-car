@@ -4,6 +4,7 @@ import 'modern-normalize';
 import './globals.css';
 
 import Header from '@/components/Header/Header';
+import TanStackProvider from '@/components/TanstackProvider/TanstackProvider';
 
 const geistMan = Manrope({
   variable: '--font-family',
@@ -28,8 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistMan.variable} ${geistInter.variable}`}>
       <body>
-        <Header />
-        {children}
+        <TanStackProvider>
+          <Header />
+          <main>{children}</main>
+        </TanStackProvider>
       </body>
     </html>
   );

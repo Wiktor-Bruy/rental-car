@@ -16,14 +16,14 @@ export const metadata: Metadata = {
 export default async function Catalog() {
   const brand = '';
   const price = '';
-  const minMile = '';
-  const maxMile = '';
-  const page = 1;
+  const minMile = 0;
+  const maxMile = 0;
+  // const page = 1;
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ['notes', page, brand, price, minMile, maxMile],
-    queryFn: () => getCars(page),
+    queryKey: ['cars', brand, price, minMile, maxMile],
+    queryFn: () => getCars({ page: 1 }),
   });
 
   return (

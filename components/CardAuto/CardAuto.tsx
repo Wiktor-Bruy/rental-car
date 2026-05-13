@@ -33,7 +33,13 @@ export default function CardAuto({ car }: CardAutoProps) {
   return (
     <div className={css.card}>
       <div className={css.boxImage} onClick={handleLike}>
-        <Image src={car.img} alt="photo auto" width={276} height={268} />
+        <Image
+          src={car.img}
+          alt="photo auto"
+          width={276}
+          height={268}
+          loading="eager"
+        />
         <div>
           {!like ? (
             <svg width={16} height={16}>

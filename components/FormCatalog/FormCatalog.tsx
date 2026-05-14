@@ -23,7 +23,7 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
 
   const formik = useFormik({
     initialValues: {
-      brand: '',
+      brand: 'All',
       price: '',
       mileFor: 0,
       mileTo: 0,
@@ -42,7 +42,7 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
       <div>
         <label htmlFor={`brand-${id}`}>Car brand</label>
         <select name="brand" id={`brand-${id}`} onChange={formik.handleChange}>
-          <option selected={true} disabled={true} value={''}>
+          <option selected={true} disabled={true} value={'All'}>
             Choose a brand
           </option>
           {brands.map(brand => (

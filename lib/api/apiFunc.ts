@@ -1,19 +1,25 @@
 import { api } from './api';
-import type { Car } from '@/types/types';
+import type { Car, CarDetails } from '@/types/types';
 
-interface CarResponse {
+export interface CarResponse {
   page: string;
   totalPages: number;
   cars: Car[];
 }
 
+export interface RequestRental {
+  name: string;
+  email: string;
+  date: Date;
+  comment?: string;
+}
+
 interface FetchCars {
   page: number;
   brand?: string;
-  rentalPrice?: string;
+  price?: string;
   minMileage?: number;
   maxMileage?: number;
-  limit?: number;
 }
 
 export async function getBrands(): Promise<string[]> {
@@ -24,24 +30,37 @@ export async function getBrands(): Promise<string[]> {
 export async function getCars({
   page,
   brand,
-  rentalPrice,
+  price,
   minMileage,
   maxMileage,
 }: FetchCars): Promise<CarResponse> {
-  const isBrand = brand != '';
-  const isPrice = rentalPrice != '';
+  const isBrand = brand != 'All';
+  const isPrice = price != '';
   const isMin = minMileage != 0;
   const isMax = maxMileage != 0;
 
   const res = await api.get('/cars', {
     params: {
       ...(isBrand && { brand }),
-      ...(isPrice && { rentalPrice }),
+      ...(isPrice && { price }),
       ...(isMin && { minMileage }),
       ...(isMax && { maxMileage }),
-      limit: 12,
+      perPage: 12,
       page,
     },
   });
+  return res.data;
+}
+
+export async function getCar(id: string): Promise<CarDetails> {
+  const res = await api.get(`/cars/${id}`);
+  return res.data;
+}
+
+export async function blocingCar(
+  data: RequestRental,
+  id: string
+): Promise<string> {
+  const res = await api.post(`/cars/${id}/booking-requests`, data);
   return res.data;
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import type { Car } from '@/types/types';
 import CardAuto from '@/components/CardAuto/CardAuto';
 

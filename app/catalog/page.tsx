@@ -14,11 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Catalog() {
-  const brand = '';
+  const brand = 'All';
   const price = '';
   const minMile = 0;
   const maxMile = 0;
-  // const page = 1;
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({

@@ -10,7 +10,7 @@ import CarList from '@/components/CarList/CarList';
 
 export default function CatalogClient() {
   const [brands, setBrands] = useState<string[] | []>([]);
-  const [brand, setBrand] = useState('');
+  const [brand, setBrand] = useState('All');
   const [price, setPrice] = useState('');
   const [minMile, setMinMile] = useState(0);
   const [maxMile, setMaxMile] = useState(0);
@@ -39,7 +39,7 @@ export default function CatalogClient() {
 
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ['cars', brand, price, minMile, maxMile],
-    queryFn: ({ queryKey, pageParam = 1 }) => {
+    queryFn: ({ queryKey, pageParam }) => {
       const brand = queryKey[1] as string;
       const price = queryKey[2] as string;
       const minMile = queryKey[3] as number;
@@ -47,7 +47,7 @@ export default function CatalogClient() {
       return getCars({
         page: pageParam,
         brand: brand,
-        rentalPrice: price,
+        price: price,
         minMileage: minMile,
         maxMileage: maxMile,
       });
@@ -63,7 +63,7 @@ export default function CatalogClient() {
     select: data => {
       return {
         ...data,
-        cars: data.pages.flatMap(page => page.cars),
+        cars: data?.pages?.flatMap(page => page?.cars ?? []),
       };
     },
   });

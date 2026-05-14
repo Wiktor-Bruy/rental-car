@@ -13,7 +13,7 @@ interface FormArendProps {
   id: string;
 }
 
-const today = new Date();
+// const today = new Date();
 
 export default function FormArend({ id }: FormArendProps) {
   const [errSubmit, setErrSubmit] = useState(false);
@@ -88,8 +88,9 @@ export default function FormArend({ id }: FormArendProps) {
       setErrSubmit(false);
       const errName = values.name.length < 3 || values.name.length > 30;
       const errEmail = !values.email.includes('@') || values.email.length > 30;
-      const errDate =
-        !values.date || new Date(values.date).getDate() <= today.getDate();
+      // const errDate =
+      //   !values.date || new Date(values.date).getDate() <= today.getDate();
+      const errDate = false;
       const errComment = values.comment.length > 500;
       if (errName || errEmail || errDate || errComment) {
         return;
@@ -97,15 +98,16 @@ export default function FormArend({ id }: FormArendProps) {
       const data = {
         name: values.name,
         email: values.email,
-        date: values.date || new Date(),
+        // date: values.date || new Date(),
         comment: values.comment,
       };
       try {
         const res = await blocingCar(data, id);
-        setModalText(res);
+        setModalText(res.message);
         setIsModal(true);
         const form = document.querySelector('.carForm') as HTMLFormElement;
         form.reset();
+        setInputDate(null);
       } catch {
         setErrSubmit(true);
         setModalText('We apologize. There was an error sending your request.');
@@ -119,6 +121,7 @@ export default function FormArend({ id }: FormArendProps) {
       <p>Book your car now</p>
       <p>Stay connected! We are always ready to help you.</p>
       <form
+        className="carForm"
         onSubmit={e => {
           e.preventDefault();
           formik.handleSubmit(e);

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import type { Car } from '@/types/types';
-import { getAddress } from '@/lib/getAddress';
+// import { getAddress } from '@/lib/getAddress';
 
 interface CardAutoProps {
   car: Car;
@@ -15,7 +15,7 @@ interface CardAutoProps {
 
 export default function CardAuto({ car }: CardAutoProps) {
   const [like, setLike] = useState(false);
-  const arrAddress = getAddress(car.address);
+  // const arrAddress = getAddress(car.address);
   const router = useRouter();
 
   function handleLike() {
@@ -64,8 +64,8 @@ export default function CardAuto({ car }: CardAutoProps) {
       </div>
 
       <div className={css.detailsBox}>
-        <p>{arrAddress[1]}</p>
-        <p>{arrAddress[2]}</p>
+        <p>{car.location.city}</p>
+        <p>{car.location.country}</p>
         <p>{car.rentalCompany}</p>
         <p>{car.type}</p>
         <p>{car.mileage}km</p>

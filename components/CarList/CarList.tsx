@@ -6,14 +6,14 @@ import CardAuto from '@/components/CardAuto/CardAuto';
 interface CarLisrProps {
   cars: Car[];
   handleLoad: () => void;
-  isButton: boolean;
+  isPage: boolean;
   fetching: boolean;
 }
 
 export default function CarList({
   cars,
   handleLoad,
-  isButton,
+  isPage,
   fetching,
 }: CarLisrProps) {
   return (
@@ -25,7 +25,7 @@ export default function CarList({
           </li>
         ))}
       </ul>
-      <button type="button" onClick={handleLoad} disabled={isButton}>
+      <button type="button" onClick={handleLoad} disabled={!isPage}>
         {fetching ? 'Loading...' : 'Load more'}
       </button>
     </>

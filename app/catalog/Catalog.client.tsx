@@ -4,25 +4,25 @@ import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getBrands, getCars } from '@/lib/api/apiFunc';
+import { getFilters, getCars, type Filters } from '@/lib/api/apiFunc';
 import FormCatalog from '@/components/FormCatalog/FormCatalog';
 import CarList from '@/components/CarList/CarList';
 
 export default function CatalogClient() {
-  const [brands, setBrands] = useState<string[] | []>([]);
-  const [brand, setBrand] = useState('All');
+  const [filters, setFilters] = useState<Filters | null>(null);
+  const [brand, setBrand] = useState('');
   const [price, setPrice] = useState('');
   const [minMile, setMinMile] = useState(0);
   const [maxMile, setMaxMile] = useState(0);
 
   useEffect(() => {
-    async function fetchBrands() {
-      const brands = await getBrands();
-      if (brands) {
-        setBrands(brands);
+    async function fetchFilters() {
+      const filters = await getFilters();
+      if (filters) {
+        setFilters(filters);
       }
     }
-    fetchBrands();
+    fetchFilters();
   }, []);
 
   function changeParams(
@@ -57,7 +57,7 @@ export default function CatalogClient() {
       if (!lastResponse) {
         return undefined;
       }
-      const nextPage = Number(lastResponse.page) + 1;
+      const nextPage = lastResponse.page + 1;
       return nextPage <= lastResponse.totalPages ? nextPage : undefined;
     },
     select: data => {
@@ -73,13 +73,13 @@ export default function CatalogClient() {
 
   return (
     <section className={clsx('container')}>
-      <FormCatalog brands={brands} handleSubmit={changeParams} />
+      {filters && <FormCatalog filters={filters} handleSubmit={changeParams} />}
       {isCars && (
         <CarList
           cars={cars}
           handleLoad={() => fetchNextPage()}
           fetching={isFetching}
-          isButton={!hasNextPage}
+          isPage={hasNextPage}
         />
       )}
     </section>

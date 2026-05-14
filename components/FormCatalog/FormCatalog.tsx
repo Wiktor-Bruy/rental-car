@@ -8,7 +8,13 @@ import { useId } from 'react';
 import { generatePrices } from '@/lib/generatePrices';
 
 interface FormProps {
-  brands: string[];
+  filters: {
+    brands: string[];
+    price: {
+      min: string;
+      max: string;
+    };
+  };
   handleSubmit: (
     brand: string,
     price: string,
@@ -17,8 +23,10 @@ interface FormProps {
   ) => void;
 }
 
-export default function FormCatalog({ brands, handleSubmit }: FormProps) {
-  const prices = generatePrices(250);
+export default function FormCatalog({ filters, handleSubmit }: FormProps) {
+  const min = Number(filters.price.min);
+  const max = Number(filters.price.max);
+  const prices = generatePrices(min, max);
   const id = useId();
 
   const formik = useFormik({
@@ -42,10 +50,8 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
       <div>
         <label htmlFor={`brand-${id}`}>Car brand</label>
         <select name="brand" id={`brand-${id}`} onChange={formik.handleChange}>
-          <option selected={true} disabled={true} value={'All'}>
-            Choose a brand
-          </option>
-          {brands.map(brand => (
+          <option value={''}>Choose a brand</option>
+          {filters.brands.map(brand => (
             <option key={brand} value={brand}>
               {brand}
             </option>
@@ -56,9 +62,7 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
       <div>
         <label htmlFor={`price-${id}`}>Price/ 1 hour</label>
         <select name="price" id={`price-${id}`} onChange={formik.handleChange}>
-          <option selected={true} disabled={true} value={''}>
-            Choose a price
-          </option>
+          <option value={''}>Choose a price</option>
           {prices.map(price => (
             <option key={price} value={price}>
               {price}
@@ -74,7 +78,7 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
           <input
             name="mileFor"
             type="number"
-            min={1000}
+            min={0}
             step={500}
             id={`mileage-${id}`}
             onChange={formik.handleChange}
@@ -86,7 +90,7 @@ export default function FormCatalog({ brands, handleSubmit }: FormProps) {
           <input
             name="mileTo"
             type="number"
-            min={1000}
+            min={0}
             step={500}
             onChange={formik.handleChange}
           />

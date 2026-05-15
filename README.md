@@ -13,7 +13,7 @@ which, when clicked, will take you to the main page. Also on the right, you can
 see captions, which indicate which page you're currently on. Clicking on them
 will also take you to that page.
 
-<img src="/readme/1.png" width="600" alt="home page"/>
+<img src="./public/readme/1.png" width="600" alt="home page"/>
 
 ### Page catalog
 
@@ -25,24 +25,24 @@ filters. The list will display the cars found. Here, you can mark the ones you
 like. You'll also see a short description of the cars. Clicking the button next
 to the selected car will take you to its detailed description page.
 
-<img src="/readme/2.png" width="600" alt="home page"/>
+<img src="./public/readme/2.png" width="600" alt="catalog page"/>
 
 В самом низу списка есть кнопка для загрузки следующей порции автомобилей. Она
 станет неактивна, если автомобилей больше нет.
 
-<img src="/readme/3.png" width="600" alt="home page"/>
+<img src="./public/readme/3.png" width="600" alt="catalog page"/>
 
 ### Car Details Page
 
 On this page, you can view detailed information about the selected vehicle and
 see a larger image.
 
-<img src="/readme/4.png" width="600" alt="home page"/>
+<img src="./public/readme/4.png" width="600" alt="details page"/>
 
 There's also a rental application form on this page. You can enter your
 information and submit your application. You'll then see a confirmation pop-up.
 
-<img src="/readme/5.png" width="600" alt="home page"/>
+<img src="./public/readme/5.png" width="600" alt="details page"/>
 
 ## Tech stack
 

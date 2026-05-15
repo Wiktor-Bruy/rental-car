@@ -76,13 +76,18 @@ export default function CatalogClient() {
   return (
     <section className={clsx('container', css.section)}>
       {filters && <FormCatalog filters={filters} handleSubmit={changeParams} />}
-      {isCars && (
+      {isCars ? (
         <CarList
           cars={cars}
           handleLoad={() => fetchNextPage()}
           fetching={isFetching}
           isPage={hasNextPage}
         />
+      ) : (
+        <p className={css.text}>
+          An error occurred, or no vehicles were found matching your search
+          criteria...
+        </p>
       )}
     </section>
   );

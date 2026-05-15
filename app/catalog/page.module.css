@@ -5,3 +5,9 @@
   flex-direction: column;
   gap: 58px;
 }
+.text {
+  font-family: var(--second-family);
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.3;
+}

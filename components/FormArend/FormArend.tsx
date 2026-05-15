@@ -1,10 +1,12 @@
 'use client';
 
+import css from './FormArend.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import clsx from 'clsx';
 
 import { blocingCar } from '@/lib/api/apiFunc';
 import Modal from '../Modal/Modal';
@@ -117,62 +119,83 @@ export default function FormArend({ id }: FormArendProps) {
   });
 
   return (
-    <div>
-      <p>Book your car now</p>
-      <p>Stay connected! We are always ready to help you.</p>
+    <div className={css.formBox}>
+      <p className={css.formTitle}>Book your car now</p>
+      <p className={css.formText}>
+        Stay connected! We are always ready to help you.
+      </p>
       <form
-        className="carForm"
+        className={clsx('carForm', css.form)}
         onSubmit={e => {
           e.preventDefault();
           formik.handleSubmit(e);
         }}
       >
-        <div>
+        <div className={css.inputBox}>
           <input
+            className={clsx(css.input, isErrName && css.inputInvalid)}
             name="name"
             type="text"
             placeholder="Name*"
             required
             onChange={changeName}
           />
-          {isErrName && <span>{errName}</span>}
+          {isErrName && <span className={css.errMess}>{errName}</span>}
         </div>
-        <div>
+        <div className={css.inputBox}>
           <input
+            className={clsx(css.input, isErrEmail && css.inputInvalid)}
             name="email"
             type="text"
             placeholder="Email*"
             required
             onChange={changeEmail}
           />
-          {isErrEmail && <span>{errEmail}</span>}
+          {isErrEmail && <span className={css.errMess}>{errEmail}</span>}
         </div>
-        <div>
+        <div className={css.inputBox}>
           <DatePicker
             placeholderText="Booking date"
             selected={inputDate}
             onChange={(date: Date | null) => changeDate(date)}
-            // wrapperClassName={clsx(css.input, css.datepicker)}
-            // className={clsx(css.datainput, isDateErr && css.inputInvalid)}
+            wrapperClassName={clsx(css.input)}
+            className={clsx(css.input, isDateErr && css.inputInvalid)}
             dateFormat="dd.MM.yyyy"
             autoComplete="off"
           />
-          {isDateErr && <span>The date must be no earlier than tomorrow.</span>}
+          {isDateErr && (
+            <span className={css.errMess}>
+              The date must be no earlier than tomorrow.
+            </span>
+          )}
         </div>
-        <div>
+        <div className={css.inputBox}>
           <textarea
+            className={clsx(
+              css.input,
+              css.comment,
+              isCommentErr && css.inputInvalid
+            )}
             name="comment"
             placeholder="Comment"
             onChange={changeComment}
           ></textarea>
-          {isCommentErr && <span>Maximum 500 characters.</span>}
+          {isCommentErr && (
+            <span className={css.errMess}>Maximum 500 characters.</span>
+          )}
         </div>
-        <button type="submit">Send</button>
+        <button className={css.btn} type="submit">
+          Send
+        </button>
       </form>
 
       {isModal && (
         <Modal onClose={() => setIsModal(false)}>
-          {errSubmit ? <p>{modalText}</p> : <p>{modalText}</p>}
+          {errSubmit ? (
+            <p className={css.modalErr}>{modalText}</p>
+          ) : (
+            <p className={css.modalSucc}>{modalText}</p>
+          )}
         </Modal>
       )}
     </div>

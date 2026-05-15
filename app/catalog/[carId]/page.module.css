@@ -1,0 +1,81 @@
+.section {
+  padding-top: 84px;
+  padding-bottom: 104px;
+  display: flex;
+  gap: 72px;
+}
+.leftBox {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.imgBox {
+  width: 640px;
+  height: 512px;
+  position: relative;
+  border-radius: 19px;
+  overflow: hidden;
+}
+
+.brandBox {
+  margin-bottom: 68px;
+}
+.text {
+  font-weight: 500;
+  line-height: 1.25;
+}
+.brand {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 8px;
+}
+.id {
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--gray);
+}
+.location {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.city {
+  margin-left: 4px;
+}
+.mileage {
+  margin-left: 16px;
+}
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--button);
+  margin-bottom: 32px;
+}
+
+.conditionBox {
+  margin-bottom: 110px;
+}
+.title {
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spcfBox {
+  margin-bottom: 110px;
+}

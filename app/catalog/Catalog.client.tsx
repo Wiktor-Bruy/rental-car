@@ -1,5 +1,7 @@
 'use client';
 
+import css from './page.module.css';
+
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
@@ -72,7 +74,7 @@ export default function CatalogClient() {
   const isCars = cars && cars.length > 0;
 
   return (
-    <section className={clsx('container')}>
+    <section className={clsx('container', css.section)}>
       {filters && <FormCatalog filters={filters} handleSubmit={changeParams} />}
       {isCars && (
         <CarList

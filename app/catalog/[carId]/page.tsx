@@ -1,8 +1,10 @@
+import css from './page.module.css';
+
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import clsx from 'clsx';
 
 import { getCar } from '@/lib/api/apiFunc';
-// import { getAddress } from '@/lib/getAddress';
 import FormArend from '@/components/FormArend/FormArend';
 
 export const metadata: Metadata = {
@@ -18,14 +20,10 @@ export default async function AutoDetails({ params }: AutoDetailsProps) {
   const { carId } = await params;
   const car = await getCar(carId);
 
-  // const carNameArr = car.img.split('/');
-  // const carNameId = carNameArr[carNameArr.length - 1].slice(0, 4);
-  // const arrAddress = getAddress(car.address);
-
   return (
-    <section>
-      <div>
-        <div>
+    <section className={clsx('container', css.section)}>
+      <div className={css.leftBox}>
+        <div className={css.imgBox}>
           <Image
             src={car.img}
             alt="Photo this auto"
@@ -36,80 +34,83 @@ export default async function AutoDetails({ params }: AutoDetailsProps) {
         </div>
         <FormArend id={carId} />
       </div>
+
       <div>
-        <div>
-          <p>
+        <div className={css.brandBox}>
+          <p className={css.brand}>
             <span>
-              {car.brand} {car.model}
+              {car.brand} {car.model}, {car.year}
             </span>
-            <span>id {car.stockNumber}</span>
+            <span className={css.id}>id {car.stockNumber}</span>
           </p>
-          <p>
+          <p className={clsx(css.text, css.location)}>
             <svg width={12} height={15}>
               <use href="/icons.svg#location"></use>
             </svg>
-            <span>
+            <span className={css.city}>
               {car.location.city}, {car.location.country}
             </span>
-            <span>Mileage: {car.mileage} km</span>
+            <span className={css.mileage}>Mileage: {car.mileage} km</span>
           </p>
-          <p>${car.rentalPrice}</p>
-          <p>{car.description}</p>
+          <p className={css.price}>${car.rentalPrice}</p>
+          <p className={css.text}>{car.description}</p>
         </div>
 
-        <div>
-          <p>Rental Conditions:</p>
-          <ul>
+        <div className={css.conditionBox}>
+          <p className={css.title}>Rental Conditions:</p>
+          <ul className={css.list}>
             {car.rentalConditions.map(condition => (
-              <li key={condition}>
+              <li className={css.item} key={condition}>
                 <svg width={16} height={16}>
                   <use href="/icons.svg#check"></use>
                 </svg>
-                <span>{condition}</span>
+                <span className={css.text}>{condition}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div>
-          <p>Car Specifications:</p>
-          <ul>
-            <li>
+        <div className={css.spcfBox}>
+          <p className={css.title}>Car Specifications:</p>
+          <ul className={css.list}>
+            <li className={css.item}>
               <svg width={16} height={16}>
                 <use href="/icons.svg#calendar"></use>
               </svg>
-              <span>Year: {car.year}</span>
+              <span className={css.text}>Year: {car.year}</span>
             </li>
-            <li>
+            <li className={css.item}>
               <svg width={16} height={16}>
                 <use href="/icons.svg#car"></use>
               </svg>
-              <span>Type: {car.type}</span>
+              <span className={css.text}>Type: {car.type}</span>
             </li>
-            <li>
+            <li className={css.item}>
               <svg width={16} height={16}>
                 <use href="/icons.svg#fuel"></use>
               </svg>
-              <span>Fuel Consumption: {car.fuelConsumption}</span>
+              <span className={css.text}>
+                Fuel Consumption: {car.fuelConsumption}
+              </span>
             </li>
-            <li>
+            <li className={css.item}>
               <svg width={16} height={16}>
                 <use href="/icons.svg#engine"></use>
               </svg>
-              <span>Engine Size: {car.engineSize}</span>
+              <span className={css.text}>Engine Size: {car.engineSize}</span>
             </li>
           </ul>
         </div>
 
         <div>
-          <p>Accessories and functionalities:</p>
-          <ul>
+          <p className={css.title}>Accessories and functionalities:</p>
+          <ul className={css.list}>
             {car.features.map(elem => (
-              <li key={elem}>
+              <li className={css.item} key={elem}>
                 <svg width={16} height={16}>
                   <use href="/icons.svg#check"></use>
                 </svg>
-                <span>{elem}</span>
+                <span className={css.text}>{elem}</span>
               </li>
             ))}
           </ul>

@@ -1,0 +1,106 @@
+.formBox {
+  width: 640px;
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 32px;
+}
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.formText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+  margin-bottom: 24px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.inputBox {
+  position: relative;
+}
+.input {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 12px;
+  outline: none;
+  border: 1px solid transparent;
+  background-color: var(--inputs);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+  transition: border-color 200ms ease-in-out;
+}
+.comment {
+  resize: none;
+  height: 88px;
+  margin-bottom: 24px;
+}
+.input:hover,
+.input:focus {
+  border-color: var(--gray);
+}
+.input::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--gray);
+}
+.input:user-invalid {
+  border-color: red;
+}
+.inputInvalid {
+  border-color: red;
+}
+.errMess {
+  font-size: 11px;
+  color: red;
+  position: absolute;
+  left: 5px;
+  bottom: -12px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0 auto;
+  width: 156px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--button);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--white);
+  transition: background-color 200ms ease-in-out;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover);
+}
+.modalSucc {
+  width: 600px;
+  height: 300px;
+  padding: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalErr {
+  width: 600px;
+  height: 300px;
+  padding: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}

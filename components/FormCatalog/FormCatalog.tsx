@@ -1,9 +1,10 @@
 'use client';
 
-// import css from './FormCatalog.module.css'
+import css from './FormCatalog.module.css';
 
 import { useFormik } from 'formik';
 import { useId } from 'react';
+import clsx from 'clsx';
 
 import { generatePrices } from '@/lib/generatePrices';
 
@@ -46,10 +47,17 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <label htmlFor={`brand-${id}`}>Car brand</label>
-        <select name="brand" id={`brand-${id}`} onChange={formik.handleChange}>
+    <form className={css.form} onSubmit={formik.handleSubmit}>
+      <div className={css.inputGroup}>
+        <label className={css.label} htmlFor={`brand-${id}`}>
+          Car brand
+        </label>
+        <select
+          className={clsx(css.input, css.select)}
+          name="brand"
+          id={`brand-${id}`}
+          onChange={formik.handleChange}
+        >
           <option value={''}>Choose a brand</option>
           {filters.brands.map(brand => (
             <option key={brand} value={brand}>
@@ -59,9 +67,16 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
         </select>
       </div>
 
-      <div>
-        <label htmlFor={`price-${id}`}>Price/ 1 hour</label>
-        <select name="price" id={`price-${id}`} onChange={formik.handleChange}>
+      <div className={css.inputGroup}>
+        <label className={css.label} htmlFor={`price-${id}`}>
+          Price/ 1 hour
+        </label>
+        <select
+          className={clsx(css.input, css.select, css.price)}
+          name="price"
+          id={`price-${id}`}
+          onChange={formik.handleChange}
+        >
           <option value={''}>Choose a price</option>
           {prices.map(price => (
             <option key={price} value={price}>
@@ -71,9 +86,11 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
         </select>
       </div>
 
-      <div>
-        <label htmlFor={`mileage-${id}`}>Сar mileage / km</label>
-        <div>
+      <div className={css.inputGroup}>
+        <label className={css.label} htmlFor={`mileage-${id}`}>
+          Сar mileage / km
+        </label>
+        <div className={css.input}>
           <span>From</span>
           <input
             name="mileFor"
@@ -83,9 +100,6 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
             id={`mileage-${id}`}
             onChange={formik.handleChange}
           />
-        </div>
-
-        <div>
           <span>To</span>
           <input
             name="mileTo"

@@ -1,0 +1,49 @@
+.form {
+  display: flex;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.label {
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+}
+.input {
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background-color: var(--inputs);
+  padding: 12px 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+}
+.select {
+  appearance: none;
+  min-width: 204px;
+  background-image: url('/arrow-down.png');
+  background-repeat: no-repeat;
+  background-position: 90% 50%;
+}
+.select:open {
+  background-image: url('/arrow-up.png');
+}
+.select option {
+  background-color: var(--white);
+  color: var(--gray);
+}
+.select option:checked {
+  color: var(--main);
+}
+.select::-webkit-scrollbar {
+  display: none;
+}
+.price {
+  width: 196px;
+}

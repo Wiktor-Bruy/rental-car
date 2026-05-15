@@ -2,6 +2,7 @@
   display: flex;
   margin: 0 auto;
   gap: 16px;
+  align-items: flex-end;
 }
 
 .inputGroup {
@@ -30,6 +31,7 @@
   background-image: url('/arrow-down.png');
   background-repeat: no-repeat;
   background-position: 90% 50%;
+  transition: background-image 250ms ease-in-out;
 }
 .select:open {
   background-image: url('/arrow-up.png');
@@ -46,4 +48,63 @@
 }
 .price {
   width: 196px;
+}
+
+.mileBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.minMile {
+  border-right: 1px solid var(--gray-light);
+  border-radius: 12px 0 0 12px;
+  width: 160px;
+  height: 44px;
+  background-color: var(--inputs);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--main);
+  padding: 12px 0 12px 16px;
+  display: flex;
+}
+.inputMile {
+  appearance: none;
+  margin-left: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 90;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--main);
+}
+.maxMile {
+  border-radius: 0 12px 12px 0;
+  width: 160px;
+  height: 44px;
+  background-color: var(--inputs);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--main);
+  padding: 12px 0 12px 16px;
+  display: flex;
+}
+
+.btn {
+  width: 156px;
+  height: 44px;
+  background-color: var(--button);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--white);
+  transition: background-color 200ms ease-in-out;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover);
 }

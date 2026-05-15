@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Catalog() {
-  const brand = 'All';
+  const brand = '';
   const price = '';
   const minMile = 0;
   const maxMile = 0;

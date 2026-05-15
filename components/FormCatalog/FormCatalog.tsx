@@ -32,7 +32,7 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
 
   const formik = useFormik({
     initialValues: {
-      brand: 'All',
+      brand: '',
       price: '',
       mileFor: 0,
       mileTo: 0,
@@ -90,28 +90,36 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
         <label className={css.label} htmlFor={`mileage-${id}`}>
           Сar mileage / km
         </label>
-        <div className={css.input}>
-          <span>From</span>
-          <input
-            name="mileFor"
-            type="number"
-            min={0}
-            step={500}
-            id={`mileage-${id}`}
-            onChange={formik.handleChange}
-          />
-          <span>To</span>
-          <input
-            name="mileTo"
-            type="number"
-            min={0}
-            step={500}
-            onChange={formik.handleChange}
-          />
+        <div className={css.mileBox}>
+          <div className={css.minMile}>
+            <span>From</span>
+            <input
+              className={css.inputMile}
+              name="mileFor"
+              type="number"
+              min={0}
+              step={500}
+              id={`mileage-${id}`}
+              onChange={formik.handleChange}
+            />
+          </div>
+          <div className={css.maxMile}>
+            <span>To</span>
+            <input
+              className={css.inputMile}
+              name="mileTo"
+              type="number"
+              min={0}
+              step={500}
+              onChange={formik.handleChange}
+            />
+          </div>
         </div>
       </div>
 
-      <button type="submit">Search</button>
+      <button className={css.btn} type="submit">
+        Search
+      </button>
     </form>
   );
 }

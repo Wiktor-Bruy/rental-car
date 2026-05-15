@@ -27,8 +27,8 @@ to the selected car will take you to its detailed description page.
 
 <img src="./public/readme/2.png" width="600" alt="catalog page"/>
 
-В самом низу списка есть кнопка для загрузки следующей порции автомобилей. Она
-станет неактивна, если автомобилей больше нет.
+At the very bottom of the list is a button for loading the next batch of cars.
+It will be grayed out when there are no more cars available.
 
 <img src="./public/readme/3.png" width="600" alt="catalog page"/>
 

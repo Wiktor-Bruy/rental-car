@@ -155,6 +155,7 @@ export default function FormArend({ id }: FormArendProps) {
         </div>
         <div className={css.inputBox}>
           <DatePicker
+            title="You can choose a date, the request will work correctly."
             placeholderText="Booking date"
             selected={inputDate}
             onChange={(date: Date | null) => changeDate(date)}
@@ -171,6 +172,7 @@ export default function FormArend({ id }: FormArendProps) {
         </div>
         <div className={css.inputBox}>
           <textarea
+            required
             className={clsx(
               css.input,
               css.comment,

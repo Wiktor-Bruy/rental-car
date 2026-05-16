@@ -3,7 +3,7 @@
 import css from './FormCatalog.module.css';
 
 import { useFormik } from 'formik';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import clsx from 'clsx';
 
 import { generatePrices } from '@/lib/generatePrices';
@@ -25,6 +25,7 @@ interface FormProps {
 }
 
 export default function FormCatalog({ filters, handleSubmit }: FormProps) {
+  const [price, setPrice] = useState(false);
   const min = Number(filters.price.min);
   const max = Number(filters.price.max);
   const prices = generatePrices(min, max);
@@ -45,6 +46,13 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
       handleSubmit(brand, price, mileFor, mileTo);
     },
   });
+
+  function changePrice(event: React.ChangeEvent) {
+    formik.handleChange(event);
+    const elem = event.target as HTMLInputElement;
+    const isPrice = elem.value != '';
+    setPrice(isPrice);
+  }
 
   return (
     <form className={css.form} onSubmit={formik.handleSubmit}>
@@ -72,10 +80,15 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
           Price/ 1 hour
         </label>
         <select
-          className={clsx(css.input, css.select, css.price)}
+          className={clsx(
+            css.input,
+            css.select,
+            css.price,
+            price && css.selectedPrice
+          )}
           name="price"
           id={`price-${id}`}
-          onChange={formik.handleChange}
+          onChange={changePrice}
         >
           <option value={''}>Choose a price</option>
           {prices.map(price => (
@@ -84,6 +97,7 @@ export default function FormCatalog({ filters, handleSubmit }: FormProps) {
             </option>
           ))}
         </select>
+        {price && <span className={clsx(css.span)}>To $</span>}
       </div>
 
       <div className={css.inputGroup}>

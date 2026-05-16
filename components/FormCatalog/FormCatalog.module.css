@@ -6,6 +6,7 @@
 }
 
 .inputGroup {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -25,6 +26,17 @@
   line-height: 1.25;
   cursor: pointer;
 }
+.span {
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--main);
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+}
+.selectedPrice {
+  padding-left: 49px;
+}
 .select {
   appearance: none;
   min-width: 204px;
@@ -39,7 +51,11 @@
 .select option {
   background-color: var(--white);
   color: var(--gray);
+  padding-left: 16px;
+  border: 1px solid var(--inputs);
+  border-radius: 12px;
 }
+
 .select option:checked {
   color: var(--main);
 }
